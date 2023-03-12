@@ -4,7 +4,7 @@
   "description": "Creating a simple chat application using socket programming and express for 5th Node hands-on. ",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./server/index.js",
+    "start": "nodemon ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

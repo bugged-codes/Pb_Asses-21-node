@@ -4,9 +4,9 @@ const client = io('http://localhost:4000');
 
 client.on('connect', () => console.log('Connected to Server!!'));
 
-client.on('message', (data) => {
+client.on('broadcast-message', (data) => {
 	console.log('Data received:\t', data);
-	client.emit('acknowledgement', 'This client acknowledges the message from server.🫡');
+	client.emit('acknowledgement', 'Client 5️⃣ acknowledges the message from server.🫡');
 });
 
 client.on('disconnect', () => {
