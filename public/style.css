@@ -1,0 +1,16 @@
+body {
+	margin: 0;
+}
+#top-container {
+	margin-inline: auto;
+	width: 85%;
+	height: 80vh;
+}
+#container {
+	height: 90vh;
+	overflow-y: auto;
+	scroll-behavior: auto;
+}
+#form-container {
+	margin-inline: auto;
+}

@@ -4,20 +4,27 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" href="icons8-communication-96-light.png" id="light-scheme-icon" />
-		<link rel="icon" href="icons8-communication-96-dark.png" id="dark-scheme-icon" />
+
+		<link rel="stylesheet" href="./style.css" />
+
+		<link rel="icon" href="./assets/icons8-communication-96-light.png" id="light-scheme-icon" />
+		<link rel="icon" href="./assets/icons8-communication-96-dark.png" id="dark-scheme-icon" />
+
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;700&family=Montserrat:wght@300;400;500;700;900&family=Pacifico&display=swap');
 		</style>
+
 		<title>Basic Chat App</title>
 	</head>
 	<body class="light || dark">
-		<div id="container"></div>
-		<div>
-			<form action="#">
-				<input type="text" class="msgInpt" name="msgInpt" />
-				<button type="submit">Submit</button>
-			</form>
+		<div id="top-container">
+			<div id="container"></div>
+			<div id="form-container">
+				<form action="#">
+					<input type="text" class="msgInpt" name="msgInpt" placeholder="Enter your message" title="Message input box." />
+					<button type="submit">Submit</button>
+				</form>
+			</div>
 		</div>
 		<script src="http://localhost:4000/socket.io/socket.io.js"></script>
 		<script>
@@ -48,10 +55,10 @@
 
 			const appendMsg = (msg, pos) => {
 				const msgDiv = document.createElement('div');
-				const Msg = document.querySelector(`#msg-inpt`);
-				msgDiv.innerText = Msg;
-				msgDiv.classList.add('pos');
+				msgDiv.innerText = msg;
+				msgDiv.classList.add(pos);
 				msgContainer.append(msgDiv);
+				// console.log(msgContainer);
 				pos === 'left ' ? audio.play() : null;
 				msgDiv.scrollTop = msgDiv.scrollHeight;
 			};
@@ -59,6 +66,7 @@
 			form.addEventListener('submit', (e) => {
 				e.preventDefault();
 				const message = msgInpt.value;
+				// console.log(message);
 				appendMsg(`You: ${message}`, 'right');
 				socket.emit('send', message);
 				msgInpt.value = '';
@@ -73,7 +81,7 @@
 			});
 
 			socket.on('disconnected', (userName) => {
-				append(`${userName} left the chat`, 'center');
+				appendMsg(`${userName} left the chat`, 'center');
 			});
 		</script>
 	</body>
